@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <title>Learn Vue</title>
+</head>
+<body>
+    <div id="app">
+        {{message}}
+    </div>
+    </br>
+    <div id="app-2">
+        <span v-bind:title="message">
+            Lorem, ipsum dolor sit amet consectetur adipisicing elit. Ducimus, laudantium qui ullam tempora beatae eveniet nemo laboriosam temporibus placeat nam sequi nesciunt quam voluptatum! Debitis magni est maiores modi atque!
+        </span>
+    </div>
+    </br>
+    <div id="app-3">
+        <span v-if="seen">
+            Now You can see me!
+        </span>
+    </div>
+    </br>
+    <div id="app-4">
+            <ol>
+              <li v-for="todo in todos">
+                {{ todo.text }}
+              </li>
+            </ol>
+    </div>
+    </br>
+    <div id="app-5">
+        <ol>
+            <todo-item></todo-item>
+            <todo-item></todo-item>
+        </ol>
+    </div>
+    <script>
+    var app = new Vue({
+        el: '#app',
+        data : {
+            message : 'Hello vue!'
+        }
+    });
+    var app2 = new Vue ({
+        el : '#app-2',
+        data : {
+            message: 'You load this page on'+ new Date().toLocaleString()
+        }
+    });
+    var app3 = new Vue ({
+        el: '#app-3',
+        data : {
+            seen :  true        
+        }
+            
+    });
+    var app4 = new Vue({
+        el: '#app-4',
+        data: {
+            todos: [
+                { text: 'Learn JavaScript' },
+                 { text: 'Learn Vue' },
+                { text: 'Build something awesome' }
+                ]
+                }
+        });
+    Vue.component('todo-item', {
+        template : '<li> This is a todo </li>'
+    })
+    var app5 = new Vue ({
+        el: '#app-5'
+    });
+    
+    </script>
+</body>
+</html>
