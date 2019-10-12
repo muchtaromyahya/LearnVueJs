@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <title>Template</title>
+</head>
+<style>
+.title{
+    color: green;
+}
+</style>
+<body>
+   <div id="app">
+        <h1 v-html="message"></h1>
+   </div> 
+    </br>
+    <div id="app-2">
+            <h1 v-bind:class="class_h1"> {{ message }} </h1>
+    </div>
+    </br>
+    <div id="app-3"></div>
+   <script>
+      var vm = new Vue({
+        el: '#app',
+        data: {
+            message: "<span style='color:red'>Data Raw HTML!</a>",
+        },
+      });
+      Vue.config.silent = true
+      var vm = new Vue ({
+        el:  '#app-2',
+        data: {
+            message: "Data Atribut !",
+            class_h1: "title"
+        },
+      });
+      var vm = new Vue({
+        el:'#app-3',
+        data: {
+            message: 'Properti Template!'
+        },
+        template:"<h1> {{ message }} </h1>"
+      });
+   </script>
+</body>
+</html>

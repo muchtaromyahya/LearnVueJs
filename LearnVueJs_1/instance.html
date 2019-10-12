@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <title>Vue Instance</title>
+</head>
+<body>
+    <div id="app">
+        {{message}}
+    </div>
+    <br>
+    <div id="app-2">
+        {{message}}
+    </div>
+    <br>
+    <div id="app-3">
+        {{message}}
+    </div>
+    <br>
+    <h1>dibawah ini ada destroy. silakan inspect element</h1>
+    <br>
+    <div id="app-4">
+        {{message}}
+    </div>
+    <script>
+        // untuk membuat before created dan created
+        var vm = new Vue({
+            el: '#app',
+            data: {
+                message: 'Before Created and Created',
+            },
+            beforeCreate () {
+                console.log('before create: '+
+                'message = ' + this.message)
+            },
+            created () {
+                console.log('created: '+
+                'message = ' + this.message)
+                console.log(this.$data)
+            },
+        });
+        // untuk membuat before mounted dan mounted
+        var vm = new Vue ({
+            el: '#app-2',
+            data :{
+                message : 'Mount!',
+            },
+            beforeMount() {
+                console.log('before mount : ' + 'el: ' + this.$el.textContent)
+            },
+            mounted() {
+                console.log('mounted: ' + 'el: ' + this.$el.textContent)
+            },
+        });
+        // untuk membuat before update dan updated
+        var vm = new Vue ({
+            el: '#app-3',
+            data :{
+                message : 'Update!',
+            },
+            beforeUpdate() {
+                console.log('before update: ' + 'el: '+ this.$el.textContent)
+            },
+            updated() {
+                console.log('Update: ' +  'el: ' + this.$el.textContent)
+            },
+            
+        });
+        vm.message = 'Selamat Datang!'
+        // untuk membuat before destroy
+        var vm = new Vue ({
+            el: '#app-4',
+            // data: {
+            //     message: 'destroy !',
+            // },
+            beforeDestroy() {
+                console.log('before destroy')
+            },
+            destroyed() {
+                console.log('destroyed')
+            },
+        });
+        vm.$destroy();
+
+    </script>
+</body>
+</html>
