@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <title>Method</title>
+</head>
+<body>
+    <div id="app">
+        {{fullName}}
+    </div>
+    </br>
+    <div id="app-2">
+        <h1>{{ now }}</h1>
+    </div>
+    </br>
+    <div id="app-3">
+        <h1>{{ message | upper }}</h1>
+    </div>
+    </br>
+    <div id="app-4">
+        <h1> {{ price | formatCurrency('USD') }} </h1>
+        <h1> {{ price | formatCurrency('IDR') }} </h1>
+    </div>
+    <script>
+        var vm = new Vue({
+            el: '#app',
+            data :{
+                firstName: 'Muchtarom',
+                lastName: 'Yahya',
+            },
+            computed: {
+                fullName : function (){
+                    return this.firstName + ' ' + this.lastName
+                }
+            },
+        });
+        var vm = new Vue({
+            el: '#app-2',
+            data: {
+            computed: {
+                now: function () {
+                    return Date.now()
+                }
+            }
+            }
+        });
+        setInterval(()=>{
+            vm.now
+        },1000)
+        var vm = new Vue({
+            el: '#app-3',
+            data: {
+                message: 'Hello world!',
+            },
+            filters: {
+                upper (text) {
+                    return text.toUpperCase()
+                }
+            }
+        });
+        var vm = new Vue({
+            el: '#app-4',
+            data: {
+                price: 500000,
+            },
+            filters: {
+                formatCurrency (value, currency) {
+                    var formatter = new Intl.NumberFormat('id-ID', {
+                        style: 'currency',
+                        currency: currency,
+                        minimumFractionDigits: 2,
+                    });
+                    return formatter.format(value)
+                }
+            },
+        });
+        
+    </script>
+</body>
+</html>
